@@ -1,0 +1,361 @@
+// Colors
+$bg: #161616;
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+
+body {
+  margin: 0;
+  background-color: $bg;
+  font-size: 1.125; // 18px
+  // font-size: 1.3125rem;
+  font-family: 'KoHo', sans-serif;
+  color: white;
+}
+
+.wrapper {
+  margin-top: 1.5rem;
+  position: relative;
+}
+
+// resets
+ol, ul {
+    list-style: none;
+}
+
+li {
+    list-style-type: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition-duration: 100ms;
+}
+
+a:visited { 
+    color: inherit;
+}
+
+a:hover {
+  cursor: pointer;
+}
+
+// Typography
+.display {
+  font-weight: 400;
+  font-size: 3rem; // 48px
+  margin: 0;
+//   border-bottom: 1px solid white;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+h3 {
+  font-size: 1.75rem;
+  font-weight: 400;
+}
+
+
+.small-text {
+  font-size: 14px;
+}
+
+@mixin flex-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.container {
+  width: 85%; 
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+// * Utilites
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+// Navbar
+.navbar {
+  @include flex-row;
+  position: sticky;
+  // border: 1px solid orange;
+}
+
+.diamond {
+  background: white;
+  width: 15px;
+  height: 15px;
+  transform: rotate(45deg);
+  // cursor: pointer;
+  transition-duration: 700ms;
+  overflow: hidden;
+}
+
+.navbar:hover .diamond {
+  transform: rotate(calc(360deg - 45deg))
+}
+
+
+// Nav links
+.nav-links {
+  position: relative;
+  padding: 0;
+  @include flex-row;
+  height: 100%;
+  overflow-y: hidden;
+  // border: 1px solid green;
+}
+
+.link {
+  transition-duration: 700ms;
+  // position: absolute;
+  transform: translatey(25px);
+  opacity: 0;
+}
+
+.link:nth-child(2) {
+  transition-delay: 50ms;
+}
+
+.link:hover {
+  cursor: pointer;
+  text-shadow: 0px 0px 5px white;
+  transition-duration: 250ms;
+}
+
+
+.navbar:hover .link {
+  transform: translatey(0px);
+  opacity: 1;
+}
+
+// Main Content
+
+.carousel {
+  // border: 1px solid green;
+
+  width: 100%;
+  overflow-x: hidden;
+  display: flex;
+  align-items: center;
+  // gap: 50px;
+  gap: 4%;
+  position: relative;
+}
+
+// .carousel::before {
+//   content: "";
+//   position: fixed;
+//   right: 0;
+//   height: 100%;
+//   width: 8%;
+//   background: white;
+//   // background-image: linear-gradient(to left, $bg, transparent)
+// }
+
+.img-container {
+  // border: 1px solid orange;
+  overflow: hidden;
+  flex-shrink: 0;
+  flex-grow: 1;
+  width: 29%;
+  position: relative;
+
+  border-radius: 12px;
+
+  transition-duration: 300ms;
+  cursor: pointer;
+}
+
+.shadow {
+
+  
+  position: absolute;
+  display: block;
+  // background: orange;
+  background-image: linear-gradient(to top, rgb(0, 0, 0) 20%, rgba(0, 0, 0, 0));
+  bottom: -85px;
+  right: -85px;
+
+  transform: rotate(330deg);
+  
+  width: 120%;
+  height: 40%;
+
+  // display: none;
+  // border: 1px solid green;
+}
+
+.img-container::after {
+  content: " ";
+  // position: absolute;
+  // display: block;
+  // // background: orange;
+  // background-image: linear-gradient(to top, rgb(0, 0, 0) 20%, rgba(0, 0, 0, 0));
+  // bottom: -85px;
+  // right: -85px;
+
+  // transform: rotate(330deg);
+  
+  // width: 120%;
+  // height: 40%;
+  // // border: 1px solid green;
+}
+
+.carousel-img {
+  // border-radius: 12px;
+  // display: none;
+}
+
+.img-caption {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 100;
+
+  padding: 15px;
+
+
+
+  p {
+    
+    font-size: 1.5rem;
+    margin: 0;
+    
+  }
+
+  // display: none;
+}
+
+
+.img-caption, .shadow {
+  opacity: 0;
+  transition-duration: 300ms;
+}
+
+.img-container:hover .img-caption,
+.img-container:hover .shadow {
+  // display: block;
+  opacity: 1;
+}
+
+@media screen and (max-width: 700px) {
+  .carousel {
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .img-container {
+    width: 100%;
+    // border: 1px solid green;
+  }
+}
+
+
+/**********************************
+* CHARACTER PAGES
+********************************/
+
+.character-info {
+  // display: flex;
+  // justify-content: space-between;
+  // align-content: center; 
+
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+
+  // border: 1px solid lightgreen;
+}
+
+
+.summary {
+  // border-top: 1px solid white;
+  // border-bottom: 1px solid white;
+  width: 65%;
+  padding: 32px 0;
+}
+
+.stats {
+  border: 1px solid white;
+
+  border-radius: 16px;
+
+  padding: 32px 16px;
+
+  p:first-of-type {
+    margin-top: 0;
+    font-size: 1.15rem;
+  }
+
+}
+
+.header-center {
+  text-align: center;
+}
+
+
+hr {
+  margin: 48px auto;
+}
+
+.stat-group {
+  @include flex-between;
+}
+
+
+.character-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 16px;
+
+  // border: 1px solid green;
+}
+
+.gallery-img-container {
+  // background-color: orange;
+  // width: 25px; 
+  // height: 25px;
+  // border: 1px solid orange;
+
+  border-radius: 16px;
+
+  overflow: hidden;
+}
+
+.gallery-img {
+  width: 100%;
+}
+
+
+
+
+////////////////////////////////
+
+.novelai {
+  text-align: right;
+}
+
+.novelai a {
+  font-weight: 700;
+  // font-style: underline;
+  text-decoration-line: underline;
+}
